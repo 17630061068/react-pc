@@ -2,7 +2,9 @@
 //然后统一导出
 import { http } from "./http"
 
+import { tokenUtil } from './token'
 
 export {
-  http
+  http,
+  tokenUtil
 }
