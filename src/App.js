@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { unstable_HistoryRouter as HistoryRouter, BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import GeekLayout from '@/pages/layout'
 import Login from '@/pages/login'
@@ -6,11 +6,12 @@ import AuthComponent from './components/AuthComponent'
 import Publish from './pages/publish'
 import Article from './pages/article'
 import Home from './pages/home'
+import { history } from './utils'
 
 function App () {
   return (
     //路由配置
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <div className='App'>
         <Routes>
           {/* 创建路由path和组件对应关系 */}
@@ -29,7 +30,7 @@ function App () {
           } ></Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </HistoryRouter>
   )
 }
 

@@ -1,6 +1,7 @@
 //封装axios
 // 实例化 请求拦截器 响应拦截器
 import axios from "axios"
+import { history } from "./history"
 import { tokenUtil } from "./token"
 
 const http = axios.create({
@@ -12,7 +13,7 @@ const http = axios.create({
 http.interceptors.request.use((config) => {
   const token = tokenUtil.getToken()
   if (token) {
-    config.headers.Authorization = 'Bearer $(token)'
+    config.headers.Authorization = `Bearer ${token}`
   }
   return config
 }, (error) => {
@@ -27,6 +28,10 @@ http.interceptors.response.use((response) => {
 }, (error) => {
   // 超出 2xx 范围的状态码都会触发该函数。
   // 对响应错误做点什么
+  console.log(error)
+  if (error.response.status === 401) {
+    history.push('/login')
+  }
   return Promise.reject(error)
 })
 

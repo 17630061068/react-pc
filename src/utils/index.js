@@ -4,7 +4,10 @@ import { http } from "./http"
 
 import { tokenUtil } from './token'
 
+import { history } from './history'
+
 export {
   http,
-  tokenUtil
+  tokenUtil,
+  history
 }

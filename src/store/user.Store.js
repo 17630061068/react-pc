@@ -2,13 +2,16 @@ import { http } from '@/utils'
 import { makeAutoObservable } from 'mobx'
 
 class UserStore {
-  useInfo = {}
+  userInfo = {
+
+  }
   constructor() {
     makeAutoObservable(this)
   }
 
-  getUserInfo = () => {
-    http.post('', {})
+  getUserInfo = async () => {
+    const res = await http.get('/user/profile')
+    this.userInfo = res.data
   }
 }
 
